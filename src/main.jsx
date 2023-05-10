@@ -5,30 +5,33 @@ import MainLayout from './layout/MainLayout'
 import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
 import Register from './pages/signUp/Register'
+import AuthProvider from './providers/AuthProvider'
 
 const router = createBrowserRouter([
   {
-    path : '/',
-    element : <MainLayout></MainLayout>,
-    children : [
+    path: '/',
+    element: <MainLayout></MainLayout>,
+    children: [
       {
-        path : '/',
-        element : <Home></Home>
+        path: '/',
+        element: <Home></Home>
       },
       {
-        path:'login',
-        element : <Login></Login>
+        path: 'login',
+        element: <Login></Login>
       },
       {
-        path:'register',
-        element : <Register></Register>
+        path: 'register',
+        element: <Register></Register>
       }
     ]
   }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <div className='container mx-auto'>
+  <div className='container mx-auto'>
+    <AuthProvider>
       <RouterProvider router={router} />
-    </div>
+    </AuthProvider>
+  </div>
 )
