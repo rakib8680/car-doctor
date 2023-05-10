@@ -46,7 +46,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn  btn-outline btn-primary duration-200">Get started</a>
+                <a className="btn  btn-outline btn-primary duration-200 btn-sm md:btn-md">Get started</a>
             </div>
         </div>
     );
