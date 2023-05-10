@@ -1,5 +1,8 @@
 
 import login_img from '../../assets/images/login/login.svg'
+import { FaFacebook,FaInstagram,FaTwitter } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -32,10 +35,16 @@ const Login = () => {
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>
                         </div>
-                        <div className='text-center text-sm'>
+                        <div className='text-center text-sm mt-5'>
                             <p>or</p>
                             <h2>Login With</h2>
                         </div>
+                        <div className=' mt-5 flex gap-5  justify-center'>
+                            <div className="btn btn-circle btn-info "><FaFacebook className='w-[20px] h-[20px]' /></div>
+                            <div className="btn btn-circle btn-error"><FaInstagram className='w-[20px] h-[20px]' /></div>
+                            <div className="btn btn-circle btn-secondary"><FaTwitter className='w-[20px] h-[20px]' /></div>
+                        </div>
+                        <h2 className='text-xs text-center mt-6'>Dont have an account ? <Link to="/register" className='text-warning'>Register</Link></h2>
                     </div>
                 </div>
             </div>
