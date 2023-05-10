@@ -23,6 +23,9 @@ const Navbar = () => {
                         <li>
                             <Link>Services</Link>
                         </li>
+                        <li>
+                            <Link to='/login'>Login</Link>
+                        </li>
                     </ul>
                 </div>
                 <Link to="/" className="btn btn-ghost ">
@@ -42,6 +45,9 @@ const Navbar = () => {
                     </li>
                     <li>
                         <Link>Services</Link>
+                    </li>
+                    <li>
+                        <Link to='/login'>Login</Link>
                     </li>
                 </ul>
             </div>

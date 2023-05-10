@@ -16,12 +16,12 @@ const Services = () => {
 
     return (
         <div className="my-24">
-            <div className="text-center space-y-3 mb-12">
+            <div className="text-center space-y-3 mb-12 p-6 md:p-0">
                 <h1 className="text-primary font-semibold text-lg">Service</h1>
                 <h2 className="text-4xl font-bold ">Our Service Area</h2>
                 <p className="">the majority have suffered alteration in some form, by injected humour, or randomized <br /> words which dont look even slightly believable. </p>
             </div>
-            <div className="md:grid grid-cols-3">
+            <div className="md:grid grid-cols-3 p-4 md:p-0">
                 {
                     services.map(service => <ServiceCard service={service} key={service._id} ></ServiceCard>)
                 }
