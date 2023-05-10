@@ -2,17 +2,27 @@
 import login_img from '../../assets/images/login/login.svg'
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 
 
 
 
 const Login = () => {
+    const { loginUser } = useContext(AuthContext)
 
-const handleLogin = event => {
-    event.preventDefault();
-    const form = event.target
+    const handleLogin = event => {
+        event.preventDefault();
+        const form = event.target
+        const email = form.email.value;
+        const password = form.password.value
 
-}
+        // login user 
+        loginUser(email, password)
+            .then(() => { })
+            .catch(err => console.log(err.message))
+
+    }
     return (
         <div >
             <div className='hidden  md:block text-center'>

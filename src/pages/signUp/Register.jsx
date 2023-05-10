@@ -1,13 +1,25 @@
 import login_img from '../../assets/images/login/login.svg'
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 
 
 const Register = () => {
+    const {createUserWithEmail} = useContext(AuthContext)
 
     const handleRegister = event => {
         event.preventDefault();
         const form = event.target
+
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        // create user 
+        createUserWithEmail(email, password)
+        .then(result => {console.log(result.user)})
+        .catch(err => console.log(err.message))
     
     }
 
@@ -29,19 +41,19 @@ const Register = () => {
                                     <label className="label">
                                         <span className="label-text">Name</span>
                                     </label>
-                                    <input type="text" placeholder="name" name='name' className="input input-bordered" />
+                                    <input type="text" placeholder="name" name='name'  className="input input-bordered" />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Email</span>
                                     </label>
-                                    <input type="text" placeholder="email" name='email' className="input input-bordered" />
+                                    <input type="text" placeholder="email" name='email' required className="input input-bordered" />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Password</span>
                                     </label>
-                                    <input type="text" placeholder="password" name='password' className="input input-bordered" />
+                                    <input type="password" placeholder="password" name='password' required className="input input-bordered" />
                                 </div>
                                 <div className="form-control mt-6">
                                     <input type="submit" value="Register" className='btn btn-primary' />
