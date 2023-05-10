@@ -39,9 +39,10 @@ const Navbar = () => {
 
                     </li>
                     <li tabIndex={0}>
-                        <Link className="justify-between">
+                        <a href='#about' className="justify-between">
                             About
-                        </Link>
+                        </a>
+                        
                     </li>
                     <li>
                         <Link>Services</Link>

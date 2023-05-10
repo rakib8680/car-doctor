@@ -27,6 +27,12 @@ const Register = () => {
                             <form onSubmit={handleRegister}>
                                 <div className="form-control">
                                     <label className="label">
+                                        <span className="label-text">Name</span>
+                                    </label>
+                                    <input type="text" placeholder="name" name='name' className="input input-bordered" />
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
                                         <span className="label-text">Email</span>
                                     </label>
                                     <input type="text" placeholder="email" name='email' className="input input-bordered" />

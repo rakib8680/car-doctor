@@ -4,7 +4,7 @@ import img2 from '../../assets/images/about_us/parts.jpg'
 
 const About = () => {
     return (
-        <div className="hero md:py-28 py-14 bg-base-200">
+        <div className="hero md:py-28 py-14 bg-base-200" id='about'>
             <div className="hero-content flex-col lg:flex-row gap-10">
                 <div className='md:w-1/2 relative'>
                     <img src={img1} className="md:max-w-lg rounded-lg" />
