@@ -17,12 +17,26 @@ const CheckOut = () => {
 
         const order = {
             customerName: name,
+            img: data?.img,
             email,
             date,
-            price : data?.price,
-            service: data?._id
+            price: data?.price,
+            service_id: data?._id,
+            title: data?.title
         }
 
+        // post 
+        fetch('http://localhost:5000/bookings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(order),
+        })
+            .then((response) => response.json())
+            .then(data => {
+                if (data.insertedId) {
+                    alert('service booked')
+                }
+            })
 
     }
 
@@ -57,7 +71,7 @@ const CheckOut = () => {
                         <label className="label">
                             <span className="label-text">Date</span>
                         </label>
-                        <input type="date"  name='date' className="input input-bordered" />
+                        <input type="date" name='date' className="input input-bordered" />
                     </div>
                     <div className="form-control mt-6">
                         <input type="submit" value="Confirm Order" className='btn btn-primary btn-block' />
