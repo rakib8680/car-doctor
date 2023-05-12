@@ -12,11 +12,31 @@ const Bookings = () => {
         fetch(url)
             .then((response) => response.json())
             .then(data => setBookings(data))
-    }, [])
+    }, []);
+
+    const handleDelete = id => {
+        const proceed = confirm('Are you sure you want to delete this booking?')
+        if (proceed) {
+            fetch(`http://localhost:5000/bookings/${id}`, {
+                method: 'DELETE',
+                headers: { 'Content-type': 'application/json' },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        alert('Deleted booking')
+                        const remaining = bookings.filter(bok => bok._id !== id)
+                        setBookings(remaining)
+
+                    }
+                })
+        }
+
+    }
 
     return (
         <div>
-            your bookings : {bookings.length}
+            <h1 className='text-center pb-16 pt-10 text-2xl font-semibold'>Your Bookings : {bookings.length}</h1>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full ">
                     {/* head */}
@@ -35,7 +55,7 @@ const Bookings = () => {
                     </thead>
                     <tbody>
                         {
-                            bookings.map((booking) => <BookingTableRow booking={booking} key={booking._id} ></BookingTableRow>)
+                            bookings.map((booking) => <BookingTableRow booking={booking} key={booking._id} handleDelete={handleDelete} ></BookingTableRow>)
                         }
                     </tbody>
                 </table>
