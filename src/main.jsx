@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import MainLayout from './layout/MainLayout'
+import Bookings from './pages/Bookings'
 import CheckOut from './pages/CheckOut'
 import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
@@ -28,9 +29,13 @@ const router = createBrowserRouter([
       {
         path: 'checkout/:id',
         element: <CheckOut></CheckOut>,
-        loader: ({params})=>fetch(`http://localhost:5000/services/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
       },
-      
+      {
+        path: 'bookings',
+        element: <Bookings></Bookings>
+      }
+
     ]
   }
 ])

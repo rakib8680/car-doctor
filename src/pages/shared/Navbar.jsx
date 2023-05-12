@@ -38,11 +38,13 @@ const Navbar = () => {
                         </li>
                         {user?.email ?
                             <li>
+                                <Link to='/bookings' className='btn btn-ghost'>My Bookings</Link>
                                 <button className='btn btn-error' onClick={handleLogOut}>Log Out</button>
                             </li>
                             :
                             <li>
                                 <Link to='/login'>Login</Link>
+                                <Link to='/register'>Register</Link>
                             </li>
                         }
                     </ul>
@@ -68,11 +70,13 @@ const Navbar = () => {
                     </li>
                     {user?.email ?
                         <li>
+                            <Link to='/bookings' className='btn btn-ghost'>My Bookings</Link>
                             <button className='btn btn-error ' onClick={handleLogOut}>Log Out</button>
                         </li>
                         :
                         <li>
                             <Link to='/login'>Login</Link>
+                            <Link to='/register'>Register</Link>
                         </li>
                     }
                 </ul>
