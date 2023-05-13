@@ -1,23 +1,37 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 import BookingTableRow from './BookingTableRow';
 
 const Bookings = () => {
 
+    const navigate = useNavigate()
     const { user } = useContext(AuthContext)
     const [bookings, setBookings] = useState([])
-    const url = `http://localhost:5000/bookings?email=${user?.email}`
+    const url = `https://car-doctor-server-sand-eight.vercel.app/bookings?email=${user?.email}`
 
     useEffect(() => {
-        fetch(url)
+        fetch(url,{
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('car-access-token')}`
+            }
+        })
             .then((response) => response.json())
-            .then(data => setBookings(data))
-    }, []);
+            .then(data => {
+                if(!data.error){
+                    setBookings(data)
+                }
+                else{
+                    navigate('/')
+                }
+            })
+    }, [url,navigate]);
 
     const handleDelete = id => {
         const proceed = confirm('Are you sure you want to delete this booking?')
         if (proceed) {
-            fetch(`http://localhost:5000/bookings/${id}`, {
+            fetch(`https://car-doctor-server-sand-eight.vercel.app/bookings/${id}`, {
                 method: 'DELETE',
                 headers: { 'Content-type': 'application/json' },
             })

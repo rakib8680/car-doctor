@@ -1,6 +1,6 @@
 
 import login_img from '../../assets/images/login/login.svg'
-import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
@@ -9,10 +9,17 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 
 const Login = () => {
-    const { loginUser } = useContext(AuthContext)
+    const { loginUser, googleSignIn } = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
     const from = location?.state?.from?.pathname || '/'
+
+    // google sing in 
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(() => { })
+            .catch(err => console.log(err.message))
+    }
 
     const handleLogin = event => {
         event.preventDefault();
@@ -26,8 +33,7 @@ const Login = () => {
                 const loggedUser = {
                     email: result.user.email
                 }
-                // navigate(from, { replace: true })
-                fetch('http://localhost:5173/jwt', {
+                fetch('https://car-doctor-server-sand-eight.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',
@@ -35,7 +41,10 @@ const Login = () => {
                     body: JSON.stringify(loggedUser)
                 })
                     .then(response => response.json())
-                    .then(data => console.log(data))
+                    .then(data => {
+                        localStorage.setItem('car-access-token', data.token)
+                        navigate(from, { replace: true })
+                    })
             })
             .catch(err => console.log(err.message))
 
@@ -80,7 +89,7 @@ const Login = () => {
                             <div className=' mt-5 flex gap-5  justify-center'>
                                 <div className="btn btn-circle btn-info "><FaFacebook className='w-[20px] h-[20px]' /></div>
                                 <div className="btn btn-circle btn-error"><FaInstagram className='w-[20px] h-[20px]' /></div>
-                                <div className="btn btn-circle btn-secondary"><FaTwitter className='w-[20px] h-[20px]' /></div>
+                                <div className="btn btn-circle btn-success" onClick={handleGoogleSignIn}><FaGoogle className='w-[20px] h-[20px] text-slate-200' /></div>
                             </div>
                             <h2 className='text-xs text-center mt-6'>Dont have an account ? <Link to="/register" className='text-warning'>Register</Link></h2>
                         </div>
