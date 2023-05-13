@@ -68,7 +68,7 @@ const Register = () => {
                                 <div className="btn btn-circle btn-error"><FaInstagram className='w-[20px] h-[20px]' /></div>
                                 <div className="btn btn-circle btn-secondary"><FaTwitter className='w-[20px] h-[20px]' /></div>
                             </div>
-                            <h2 className='text-xs text-center mt-6'>Already have an account ? <Link to="/register" className='text-warning'>Login</Link></h2>
+                            <h2 className='text-xs text-center mt-6'>Already have an account ? <Link to="/login" className='text-warning'>Login</Link></h2>
                         </div>
                     </div>
                 </div>

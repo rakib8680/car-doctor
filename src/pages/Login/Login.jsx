@@ -1,7 +1,7 @@
 
 import login_img from '../../assets/images/login/login.svg'
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 
@@ -10,6 +10,9 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
     const { loginUser } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location?.state?.from?.pathname || '/'
 
     const handleLogin = event => {
         event.preventDefault();
@@ -19,7 +22,21 @@ const Login = () => {
 
         // login user 
         loginUser(email, password)
-            .then(() => { })
+            .then((result) => {
+                const loggedUser = {
+                    email: result.user.email
+                }
+                // navigate(from, { replace: true })
+                fetch('http://localhost:5173/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(loggedUser)
+                })
+                    .then(response => response.json())
+                    .then(data => console.log(data))
+            })
             .catch(err => console.log(err.message))
 
     }
